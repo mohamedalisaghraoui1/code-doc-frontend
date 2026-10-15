@@ -1,34 +1,34 @@
-# Code-doc : frontend
+# Code-doc: frontend
 
-Interface Angular 21 + PrimeNG (base : template Sakai-NG) pour le backend **code-doc** :
-envoi d'un zip de code, tableau des documentations générées, téléchargement du PDF stocké dans MongoDB.
+Angular 21 + PrimeNG interface (based on the Sakai-NG template) for the **code-doc** backend:
+upload a zip of source code, browse a table of generated documentations, and download the PDF stored in MongoDB.
 
-## Démarrage
+## Getting started
 
 ```bash
 npm install
 npm start        # http://localhost:4200
 ```
 
-Le backend (Spring Boot, port 8080), MongoDB et Ollama doivent tourner.
-En développement, `proxy.conf.json` redirige `/api` vers `http://localhost:8080` (pas de CORS à configurer).
-En production, servez le frontend derrière le même domaine que l'API (reverse proxy) ou ajoutez un `@CrossOrigin` côté backend.
+The backend (Spring Boot, port 8080), MongoDB and Ollama must be running.
+In development, `proxy.conf.json` forwards `/api` to `http://localhost:8080` (no CORS configuration needed).
+In production, serve the frontend behind the same domain as the API (reverse proxy) or add `@CrossOrigin` on the backend.
 
-## Endpoints utilisés
+## Endpoints used
 
-| Méthode | URL                              | Usage                                  |
-|---------|----------------------------------|----------------------------------------|
-| GET     | `/api/projects`                  | liste du tableau                       |
-| POST    | `/api/projects/upload` (`file`)  | génération (synchrone, peut être long) |
-| GET     | `/api/projects/{id}/download`    | téléchargement du PDF                  |
+| Method | URL                              | Purpose                                 |
+|--------|----------------------------------|-----------------------------------------|
+| GET    | `/api/projects`                  | table data                              |
+| POST   | `/api/projects/upload` (`file`)  | generation (synchronous, can be slow)   |
+| GET    | `/api/projects/{id}/download`    | PDF download                            |
 
 ## Structure
 
 ```
-src/app/pages/docgen/    page, service HTTP et modèle
-src/app/pages/notfound/  page 404
-src/app/layout/          layout Sakai (topbar, menu, thème)
-src/assets/              styles du layout
+src/app/pages/docgen/    page, HTTP service and model
+src/app/pages/notfound/  404 page
+src/app/layout/          Sakai layout (topbar, menu, theme)
+src/assets/              layout styles
 ```
 
-Licence du template Sakai-NG : voir `LICENSE.md`.
+Sakai-NG template license: see `LICENSE.md`.
